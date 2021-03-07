@@ -57,8 +57,8 @@ class CartList {
     }
     sumPrice() {
         //Метод подсчета общей стоимости товаров в корзине
+        let sum = 0;
         for (let product of this.goods) {
-            let sum = 0;
             sum += product.price;
         }
         return sum;
