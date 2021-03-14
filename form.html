@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: 30px auto;
+        }
+
+        span {
+            margin-top: 15px;
+        }
+
+        textarea,
+        input {
+            padding: 5px 10px;
+        }
+
+        textarea:focus,
+        input:focus {
+            outline: none;
+        }
+
+        textarea::placeholder,
+        input::placeholder {
+            opacity: 0.4;
+        }
+
+        button {
+            border: none;
+            background: rgb(19, 110, 38);
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .error {
+            border: 2px solid red;
+        }
+
+        .error-text {
+            color: red;
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="form" action="#">
+            <span>Ваше имя:*</span><input type="text" class="name" placeholder="Иван Васильевич">
+            <span>Ваш телефон:*</span><input type="tel" class="phone" placeholder="+7(000)000-0000">
+            <span>Ваш Email:*</span> <input type="email" class="mail" placeholder="mymail@mail.ru">
+            <span>Ваше сообщение:</span><textarea cols="30" rows="4" class="message" placeholder="Сообщение"></textarea>
+            <button type="submit" class="btn">Отправить</button>
+        </form>
+    </div>
+    <script>
+        class input {
+            constructor(cls, mask) {
+                this.cls = cls;
+                this.mask = mask;
+            }
+            check() {
+                document.querySelector('.btn').addEventListener("click", () => {
+                    let obj = document.querySelector(this.cls);
+                    if (!this.mask.test(obj.value)) {
+                        obj.classList.add('error');
+                        obj.insertAdjacentHTML("afterend", "<span class='error-text'>Введен не правильный формат данных</span>");
+                    }
+                })
+            }
+        }
+
+        let yourname = new input('.name', /[a-zа-яё]+$/i);
+        let phone = new input('.phone', /\+7\(\d{3}\)\d{3}-\d{4}/);
+        let mail = new input('.mail', /[\w\.-]+@\w+\.[a-z]{2,20}/i);
+        yourname.check();
+        phone.check();
+        mail.check();
+    </script>
+</body>
+
+</html>
