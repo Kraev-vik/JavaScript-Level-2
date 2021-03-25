@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script defer src="scripts/search.js"></script>
+    <script defer src="scripts/cart.js"></script>
+    <script defer src="scripts/errormsg.js"></script>
+    <script defer src="scripts/products.js"></script>
+    <script defer src="scripts/main.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Интернет-магазин</title>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="container">
+                <div class="logo">Технопул</div>
+                <div class="cart">
+                    <search></search>
+                    <button class="btn-cart" type="button" @click='show=!show'><img src="img/cart.png" alt="cart">
+                        <div>Корзина</div>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <errormsg v-if="showErrorMsg"></errormsg>
+                <products :products="products"></products>
+        </main>
+        <div class="cart-wrap" v-if="show">
+            <cart :cart-products="cartProducts"></cart>
+        </div>
+    </div>
+
+</body>
+
+</html>
